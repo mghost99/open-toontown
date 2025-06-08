@@ -22,18 +22,24 @@ class TutorialHQBuildingAI:
         self.setup(blockNumber)
 
     def cleanup(self):
-        self.interior.requestDelete()
-        del self.interior
-        self.npc.requestDelete()
-        del self.npc
-        self.door0.requestDelete()
-        del self.door0
-        self.door1.requestDelete()
-        del self.door1
-        self.insideDoor0.requestDelete()
-        del self.insideDoor0
-        self.insideDoor1.requestDelete()
-        del self.insideDoor1
+        if hasattr(self, 'interior') and self.interior:
+            self.interior.requestDelete()
+            self.interior = None
+        if hasattr(self, 'npc') and self.npc:
+            self.npc.requestDelete()
+            self.npc = None
+        if hasattr(self, 'door0') and self.door0:
+            self.door0.requestDelete()
+            self.door0 = None
+        if hasattr(self, 'door1') and self.door1:
+            self.door1.requestDelete()
+            self.door1 = None
+        if hasattr(self, 'insideDoor0') and self.insideDoor0:
+            self.insideDoor0.requestDelete()
+            self.insideDoor0 = None
+        if hasattr(self, 'insideDoor1') and self.insideDoor1:
+            self.insideDoor1.requestDelete()
+            self.insideDoor1 = None
         return
 
     def setup(self, blockNumber):

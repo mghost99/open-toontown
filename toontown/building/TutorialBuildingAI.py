@@ -28,14 +28,18 @@ class TutorialBuildingAI:
         self.setup(blockNumber)
 
     def cleanup(self):
-        self.interior.requestDelete()
-        del self.interior
-        self.door.requestDelete()
-        del self.door
-        self.insideDoor.requestDelete()
-        del self.insideDoor
-        self.gagShopNPC.requestDelete()
-        del self.gagShopNPC
+        if hasattr(self, 'interior') and self.interior:
+            self.interior.requestDelete()
+            self.interior = None
+        if hasattr(self, 'door') and self.door:
+            self.door.requestDelete()
+            self.door = None
+        if hasattr(self, 'insideDoor') and self.insideDoor:
+            self.insideDoor.requestDelete()
+            self.insideDoor = None
+        if hasattr(self, 'gagShopNPC') and self.gagShopNPC:
+            self.gagShopNPC.requestDelete()
+            self.gagShopNPC = None
         return
 
     def setup(self, blockNumber):

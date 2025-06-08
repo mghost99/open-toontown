@@ -38,6 +38,9 @@ class SuitPlannerTutorialAI:
         self.suit = newSuit
 
     def cleanup(self):
+        if getattr(self, '_cleanup_in_progress', False):
+            return
+        self._cleanup_in_progress = True
         self.zoneId = None
         self.air = None
         if self.suit:
